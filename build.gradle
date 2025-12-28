@@ -3,23 +3,33 @@ plugins {
 }
 
 repositories {
+    mavenLocal()
+    maven {
+        url = 'https://repo.runelite.net'
+        content {
+            includeGroupByRegex("net\\.runelite.*")
+        }
+    }
     mavenCentral()
-    maven { url = 'https://repo.runelite.net' }
 }
 
 def runeliteVersion = '1.12.10'
 
 dependencies {
     compileOnly group: 'net.runelite', name: 'client', version: runeliteVersion
+
     compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation group: 'net.runelite', name: 'client', version: runeliteVersion
+    testImplementation group: 'net.runelite', name: 'jshell', version: runeliteVersion
 }
 
 group = 'com.raysfanatic02'
 version = '1.0.0'
 
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(11)
-    }
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+    options.release.set(11)
 }
