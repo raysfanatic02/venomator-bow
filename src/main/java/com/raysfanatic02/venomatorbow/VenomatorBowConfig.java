@@ -12,7 +12,10 @@ public interface VenomatorBowConfig extends Config
         name = "Only on Slayer task",
         description = "Only show text on NPCs that match your current Slayer task."
     )
-    default boolean onlyOnTask() { return true; }
+    default boolean onlyOnTask()
+    {
+        return true;
+    }
 
     @ConfigSection(
         name = "Tagged",
@@ -28,16 +31,22 @@ public interface VenomatorBowConfig extends Config
         section = taggedSection,
         position = 0
     )
-    default boolean showTagged() { return true; }
+    default boolean showTagged()
+    {
+        return true;
+    }
 
     @ConfigItem(
         keyName = "taggedText",
         name = "Tagged text",
-        description = "Text to show for tagged state (e.g. T or Tagged).",
+        description = "Text to show for tagged state.",
         section = taggedSection,
         position = 1
     )
-    default String taggedText() { return "T"; }
+    default String taggedText()
+    {
+        return "T";
+    }
 
     @ConfigItem(
         keyName = "taggedColor",
@@ -46,7 +55,23 @@ public interface VenomatorBowConfig extends Config
         section = taggedSection,
         position = 2
     )
-    default Color taggedColor() { return new Color(120, 200, 255); } // light blue
+    default Color taggedColor()
+    {
+        return new Color(120, 200, 255);
+    }
+
+    @Range(min = 8, max = 64)
+    @ConfigItem(
+        keyName = "taggedTextSize",
+        name = "Tagged text size",
+        description = "Font size for tagged text.",
+        section = taggedSection,
+        position = 3
+    )
+    default int taggedTextSize()
+    {
+        return 16;
+    }
 
     @ConfigSection(
         name = "Poisoned",
@@ -62,16 +87,22 @@ public interface VenomatorBowConfig extends Config
         section = poisonedSection,
         position = 0
     )
-    default boolean showPoisoned() { return true; }
+    default boolean showPoisoned()
+    {
+        return true;
+    }
 
     @ConfigItem(
         keyName = "poisonedText",
         name = "Poisoned text",
-        description = "Text to show for poisoned state (e.g. P).",
+        description = "Text to show for poisoned state.",
         section = poisonedSection,
         position = 1
     )
-    default String poisonedText() { return "P"; }
+    default String poisonedText()
+    {
+        return "P";
+    }
 
     @ConfigItem(
         keyName = "poisonedColor",
@@ -80,7 +111,23 @@ public interface VenomatorBowConfig extends Config
         section = poisonedSection,
         position = 2
     )
-    default Color poisonedColor() { return new Color(0, 200, 0); }
+    default Color poisonedColor()
+    {
+        return new Color(0, 200, 0);
+    }
+
+    @Range(min = 8, max = 64)
+    @ConfigItem(
+        keyName = "poisonedTextSize",
+        name = "Poisoned text size",
+        description = "Font size for poisoned text.",
+        section = poisonedSection,
+        position = 3
+    )
+    default int poisonedTextSize()
+    {
+        return 16;
+    }
 
     @ConfigSection(
         name = "Venomed",
@@ -96,16 +143,22 @@ public interface VenomatorBowConfig extends Config
         section = venomedSection,
         position = 0
     )
-    default boolean showVenomed() { return true; }
+    default boolean showVenomed()
+    {
+        return true;
+    }
 
     @ConfigItem(
         keyName = "venomedText",
         name = "Venomed text",
-        description = "Text to show for venomed state (e.g. V).",
+        description = "Text to show for venomed state.",
         section = venomedSection,
         position = 1
     )
-    default String venomedText() { return "V"; }
+    default String venomedText()
+    {
+        return "V";
+    }
 
     @ConfigItem(
         keyName = "venomedColor",
@@ -114,31 +167,78 @@ public interface VenomatorBowConfig extends Config
         section = venomedSection,
         position = 2
     )
-    default Color venomedColor() { return new Color(0, 255, 0); } // bright green
+    default Color venomedColor()
+    {
+        return new Color(0, 255, 0);
+    }
+
+    @Range(min = 8, max = 64)
+    @ConfigItem(
+        keyName = "venomedTextSize",
+        name = "Venomed text size",
+        description = "Font size for venomed text.",
+        section = venomedSection,
+        position = 3
+    )
+    default int venomedTextSize()
+    {
+        return 16;
+    }
 
     @ConfigSection(
         name = "Overlay",
-        description = "Overlay positioning options",
+        description = "Overlay positioning and style options",
         position = 3
     )
     String overlaySection = "overlaySection";
 
-    @Range(min = -60, max = 60)
+    @ConfigItem(
+        keyName = "boldText",
+        name = "Bold text",
+        description = "Draw all overlay text in bold.",
+        section = overlaySection,
+        position = 0
+    )
+    default boolean boldText()
+    {
+        return true;
+    }
+
+    @Range(min = -250, max = 250)
     @ConfigItem(
         keyName = "yOffset",
         name = "Text Y offset",
         description = "Moves the text up/down relative to the NPC.",
         section = overlaySection,
-        position = 0
+        position = 1
     )
-    default int yOffset() { return 0; }
+    default int yOffset()
+    {
+        return 0;
+    }
+
+    @Range(min = -250, max = 250)
+    @ConfigItem(
+        keyName = "xOffset",
+        name = "Text X offset",
+        description = "Moves the text left/right relative to the NPC.",
+        section = overlaySection,
+        position = 2
+    )
+    default int xOffset()
+    {
+        return 0;
+    }
 
     @ConfigItem(
         keyName = "shadow",
         name = "Text shadow",
         description = "Draw a simple black shadow behind text for visibility.",
         section = overlaySection,
-        position = 1
+        position = 3
     )
-    default boolean shadow() { return true; }
+    default boolean shadow()
+    {
+        return true;
+    }
 }
